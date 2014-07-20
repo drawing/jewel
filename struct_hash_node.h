@@ -1,5 +1,5 @@
-#ifndef STRUCT_HASH_H
-#define STRUCT_HASH_H
+#ifndef STRUCT_HASH_NODE_H
+#define STRUCT_HASH_NODE_H
 
 #include "hash_table.h"
 
@@ -7,7 +7,7 @@
 Usage:
 struct TestStruct
 {
-	uint32_t Key;
+	uint32_t ID;
 	int Value;
 };
 typedef CStructNode<TestStruct> Node;
@@ -15,7 +15,7 @@ typedef CStructNode<TestStruct> Node;
 HashTable<Node> * g_table = CreateMemHash<Node>(20, 10000);
 
 Node n;
-n->Key = 12;
+n->ID = 12;
 n->Value = 199;
 g_table->Put(n);
 
@@ -44,10 +44,10 @@ public:
 	}
 	uint32_t HashCode()
 	{
-		return _elem.Key * 0x9e370001u;
+		return uint32_t(_elem.ID * 0x9e370001u);
 	}
 	bool Equal(const CStructNode & node) {
-		return _elem.Key == node._elem.Key;
+		return _elem.ID == node._elem.ID;
 	}
 	int FixedSize() {
 		return sizeof(T);
@@ -60,5 +60,5 @@ public:
 	T _elem;
 };
 
-#endif // STRUCT_HASH_H
+#endif // STRUCT_HASH_NODE_H
 
