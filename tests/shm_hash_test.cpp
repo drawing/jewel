@@ -23,38 +23,40 @@ struct TestStruct
 };
 typedef CStructNode<TestStruct> Node;
 
-HashTable<Node> * g_table = NULL;
-
-TEST(MemHash, Init)
+TEST(ShmHash, Init)
 {
-	g_table = CreateMemHash<Node>(20, 10000);
-	ASSERT_FALSE(g_table == NULL);
+	HashTable<Node> * table = CreateShmHash<Node>(0x1D000010, 20, 10000);
+	ASSERT_FALSE(table == NULL);
 }
 
-TEST(MemHash, Put)
+TEST(ShmHash, Put)
 {
+	HashTable<Node> * table = CreateShmHash<Node>(0x1D000010, 20, 10000);
 	Node n;
 	n->id = 12;
 	n->value = 199;
-	ASSERT_TRUE(g_table->Put(n));
+	ASSERT_TRUE(table->Put(n));
 
 	n->id = 13;
 	n->value = 900;
-	ASSERT_TRUE(g_table->Put(n));
+	ASSERT_TRUE(table->Put(n));
 }
 
-TEST(MemHash, Get)
+TEST(ShmHash, Get)
 {
+	HashTable<Node> * table = CreateShmHash<Node>(0x1D000010, 20, 10000);
+	ASSERT_FALSE(table == NULL);
+
 	Node n;
 	n->id = 12;
-	ASSERT_TRUE(g_table->Get(n));
+	ASSERT_TRUE(table->Get(n));
 	ASSERT_TRUE(n->value == 199);
 
 	n->id = 13;
-	ASSERT_TRUE(g_table->Get(n));
+	ASSERT_TRUE(table->Get(n));
 	ASSERT_TRUE(n->value == 900);
 
 	n->id = 14;
-	ASSERT_FALSE(g_table->Get(n));
+	ASSERT_FALSE(table->Get(n));
 }
 

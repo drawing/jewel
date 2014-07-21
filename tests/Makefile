@@ -1,10 +1,10 @@
 
-source = $(shell ls *.cpp)
+source = $(shell ls *.cpp *.cc)
 
 all : a.out
 	
 a.out : $(source)
-	g++ $(source) -lgtest  -lpthread
+	g++ $(source) -lgtest -lpthread -lprotobuf
 
 clean:
 	rm a.out

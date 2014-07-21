@@ -44,10 +44,10 @@ public:
 	}
 	uint32_t HashCode()
 	{
-		return uint32_t(_elem.ID * 0x9e370001u);
+		return uint32_t(_elem.id * 0x9e370001u);
 	}
 	bool Equal(const CStructNode & node) {
-		return _elem.ID == node._elem.ID;
+		return _elem.id == node._elem.id;
 	}
 	int FixedSize() {
 		return sizeof(T);

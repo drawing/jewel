@@ -1,0 +1,9 @@
+
+package test_node;
+
+
+message ProtoNode
+{
+    optional uint64 ID = 1;
+    optional uint64 Value = 2;
+}
