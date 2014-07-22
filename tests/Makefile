@@ -1,11 +1,12 @@
 
 source = $(shell ls *.cpp)
 proto=test_node.pb.cc
+depsource = $(shell ls ../*.cpp)
 
 all : a.out
 	
 a.out : $(proto) $(source)
-	g++ $(source) $(proto) -lgtest -lpthread -lprotobuf
+	g++ $(source) $(proto) -lgtest -lpthread -lprotobuf $(depsource)
 
 $(proto) : test_node.proto
 	protoc --cpp_out=. test_node.proto

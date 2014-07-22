@@ -35,7 +35,7 @@ int SplitKeyValue(const string & sData, string & sKey, string & sValue)
 // Request
 HTTPRequest::HTTPRequest()
 {
-	sMethod = "POST";
+	sMethod = "GET";
 	sURL = "/";
 }
 
