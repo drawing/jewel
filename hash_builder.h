@@ -30,7 +30,7 @@ HashTable<T> * CreateShmHash(key_t key, int row, int col)
 
 	bool bCreated = false;
 	int iShmID = 0;
-	int iFlag = 0x666 & (~IPC_CREAT);
+	int iFlag = 0600;
 	char * sShm = NULL;
 
 	if((iShmID = shmget(key, iSize, iFlag)) < 0) {
