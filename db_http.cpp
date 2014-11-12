@@ -129,7 +129,6 @@ int HTTPRequest::decode(char buffer[], int & len)
 {
 	std::string sData(buffer, len);
 
-	int iRet = 0;
 	size_t header_len = sData.find("\r\n\r\n");
 	if (header_len == string::npos) {
 		if (sData.size() > 10240) {
@@ -207,7 +206,6 @@ int HTTPResponse::decode(char buffer[], int len)
 {
 	std::string sData(buffer, len);
 
-	int iRet = 0;
 	size_t header_len = sData.find("\r\n\r\n");
 	if (header_len == string::npos) {
 		if (sData.size() > 10240) {
