@@ -144,7 +144,7 @@ int HTTPRequest::decode(char buffer[], int & len)
 			break;
 		}
 		if (i == 0) {
-			// HTTP/1.1 200 OK
+			// forexample: POST / HTTP/1.1
 			char szMethod[128];
 			char szURL[128];
 			sscanf(sData.substr(i, j - i).c_str(), "%[^ ]s %[^ ]s HTTP/1.1", szMethod, szURL);
