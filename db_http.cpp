@@ -36,7 +36,7 @@ int SplitKeyValue(const string & sData, string & sKey, string & sValue)
 HTTPRequest::HTTPRequest()
 {
 	sMethod = "GET";
-	sURL = "/";
+	sURI = "/";
 }
 
 int HTTPRequest::add_header(const std::string & key, const std::string & value)
@@ -47,7 +47,7 @@ int HTTPRequest::add_header(const std::string & key, const std::string & value)
 
 int HTTPRequest::set_uri(const std::string & uri)
 {
-	sURL = uri;
+	sURI = uri;
 	return 0;
 }
 
@@ -69,7 +69,7 @@ int HTTPRequest::set_method(const std::string & method)
 
 int HTTPRequest::encode(char buffer[], int & len)
 {
-	int offset = snprintf(buffer, len, "%s %s HTTP/1.1\r\n", sMethod.c_str(), sURL.c_str());
+	int offset = snprintf(buffer, len, "%s %s HTTP/1.1\r\n", sMethod.c_str(), sURI.c_str());
 	if (offset <= 0 || offset >= len) {
 		return -10;
 	}
@@ -90,11 +90,10 @@ int HTTPRequest::encode(char buffer[], int & len)
 		offset += out_len;
 	}
 
+	out_len = snprintf(buffer + offset, len - offset, "\r\n");
 	if (sMethod == "POST") {
-		out_len = snprintf(buffer + offset, len - offset, "\r\n%s", sPayload.c_str());
-	}
-	else {
-		out_len = snprintf(buffer + offset, len - offset, "\r\n");
+		memcpy(buffer + offset + out_len, sPayload.data(), sPayload.size());
+		out_len += sPayload.size();
 	}
 
 	if (out_len <= 0 || out_len >= len - offset) {
@@ -117,7 +116,7 @@ std::string & HTTPRequest::get_post_body()
 
 std::string & HTTPRequest::get_uri()
 {
-	return sURL;
+	return sURI;
 }
 
 std::string & HTTPRequest::get_method()
@@ -146,10 +145,10 @@ int HTTPRequest::decode(char buffer[], int & len)
 		if (i == 0) {
 			// forexample: POST / HTTP/1.1
 			char szMethod[128];
-			char szURL[128];
-			sscanf(sData.substr(i, j - i).c_str(), "%[^ ]s %[^ ]s HTTP/1.1", szMethod, szURL);
+			char szURI[128];
+			sscanf(sData.substr(i, j - i).c_str(), "%[^ ]s %[^ ]s HTTP/1.1", szMethod, szURI);
 			sMethod = szMethod;
-			sURL = szURL;
+			sURI = szURI;
 			continue;
 		}
 

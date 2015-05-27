@@ -28,7 +28,7 @@ public:
 
 private:
 	std::string sMethod;
-	std::string sURL;
+	std::string sURI;
 	std::string sPayload;
 	std::map<std::string, std::string> mpHeaders;
 };
