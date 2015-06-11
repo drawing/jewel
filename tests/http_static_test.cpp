@@ -1,11 +1,11 @@
 
-#include "../static_router.h"
+#include "../http_static_handler.h"
 
 #include <gtest/gtest.h>
 
-TEST(StaticRouter, Normal)
+TEST(HTTPStaticHandler, Normal)
 {
-	StaticRouter router("/test/", "./data");
+	HTTPStaticHandler router("/test/", "./data");
 
 	HTTPRequest request;
 	HTTPResponse response;
@@ -20,7 +20,7 @@ TEST(StaticRouter, Normal)
 	code = router.Process(request, response);
 	EXPECT_EQ(code, 404);
 
-	StaticRouter router2("/test", "./data");
+	HTTPStaticHandler router2("/test", "./data");
 	request.set_uri("/test/static_1.html");
 	code = router2.Process(request, response);
 	EXPECT_EQ(code, 200);

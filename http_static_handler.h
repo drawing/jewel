@@ -1,14 +1,14 @@
 
-#ifndef STATIC_ROUTER_H
-#define STATIC_ROUTER_H
+#ifndef HTTP_STATIC_HANDLER_H
+#define HTTP_STATIC_HANDLER_H
 
 
 #include "http_router.h"
 
-class StaticRouter : public HTTPHandler
+class HTTPStaticHandler : public HTTPHandler
 {
 public:
-	StaticRouter(const std::string & prefix, const std::string & root);
+	HTTPStaticHandler(const std::string & prefix, const std::string & root);
 	virtual int Process(const HTTPRequest & request, HTTPResponse & response) override;
 	
 private:
@@ -18,5 +18,5 @@ private:
 };
 
 
-#endif // STATIC_ROUTER_H
+#endif // HTTP_STATIC_HANDLER_H
 

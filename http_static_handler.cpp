@@ -1,9 +1,9 @@
 
-#include "static_router.h"
+#include "http_static_handler.h"
 
 #include <fstream>
 
-StaticRouter::StaticRouter(const std::string & prefix, const std::string & root) : sPrefix(prefix), sRoot(root)
+HTTPStaticHandler::HTTPStaticHandler(const std::string & prefix, const std::string & root) : sPrefix(prefix), sRoot(root)
 {
 	mpContentType[".html"] = "text/html";
 	mpContentType[".css"] = "text/css";
@@ -14,7 +14,7 @@ StaticRouter::StaticRouter(const std::string & prefix, const std::string & root)
 	}
 }
 
-int StaticRouter::Process(const HTTPRequest & request, HTTPResponse & response)
+int HTTPStaticHandler::Process(const HTTPRequest & request, HTTPResponse & response)
 {
 	auto uri = request.get_uri();
 	if (strncmp(uri.c_str(), sPrefix.c_str(), sPrefix.size()) != 0) {
