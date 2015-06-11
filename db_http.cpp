@@ -105,21 +105,28 @@ int HTTPRequest::encode(char buffer[], int & len)
 	return 0;
 }
 
-std::string & HTTPRequest::get_header(const std::string & key)
+std::string HTTPRequest::get_header(const std::string & key) const
 {
-	return mpHeaders[key];
+	static std::string s_empty = std::string();
+	auto it = mpHeaders.find(key);
+	if (it == mpHeaders.end()) {
+		return s_empty;
+	}
+	else {
+		return it->second;
+	}
 }
-std::string & HTTPRequest::get_post_body()
+std::string HTTPRequest::get_post_body() const
 {
 	return sPayload;
 }
 
-std::string & HTTPRequest::get_uri()
+std::string HTTPRequest::get_uri() const
 {
 	return sURI;
 }
 
-std::string & HTTPRequest::get_method()
+std::string HTTPRequest::get_method() const
 {
 	return sMethod;
 }
@@ -185,17 +192,24 @@ HTTPResponse::HTTPResponse()
 	iStatusCode = 0;
 }
 
-std::string & HTTPResponse::get_header(const std::string & key)
+std::string HTTPResponse::get_header(const std::string & key) const
 {
-	return mpHeaders[key];
+	static std::string s_empty = std::string();
+	auto it = mpHeaders.find(key);
+	if (it == mpHeaders.end()) {
+		return s_empty;
+	}
+	else {
+		return it->second;
+	}
 }
 
-std::string &  HTTPResponse::get_body()
+std::string HTTPResponse::get_body() const
 {
 	return sPayload;
 }
 
-int HTTPResponse::get_status_code()
+int HTTPResponse::get_status_code() const
 {
 	return iStatusCode;
 }

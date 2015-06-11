@@ -34,7 +34,7 @@ public:
 
 	int GetHashSize(int row, int col);
 private:
-	int BuildPrime();
+	void BuildPrime();
 private:
 	std::vector<int> _prime;
 	int _col;
@@ -86,7 +86,7 @@ bool HashTable<T>::Init(char * mem, int mem_size, int row, int col)
 }
 
 template <typename T>
-int HashTable<T>::BuildPrime()
+void HashTable<T>::BuildPrime()
 {
 	_prime.clear();
 	int last_key = _col;

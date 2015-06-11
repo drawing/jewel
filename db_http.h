@@ -19,10 +19,10 @@ public:
 
 public:
 	// 服务器端解析
-	std::string & get_header(const std::string & key);
-	std::string & get_post_body();
-	std::string & get_uri();
-	std::string & get_method();
+	std::string get_header(const std::string & key) const;
+	std::string get_post_body() const;
+	std::string get_uri() const;
+	std::string get_method() const;
 
 	int decode(char buffer[], int & len);
 
@@ -40,9 +40,9 @@ public:
 	HTTPResponse();
 
 	// 客户端请求响应解析
-	std::string & get_header(const std::string & key);
-	std::string & get_body();
-	int get_status_code();
+	std::string get_header(const std::string & key) const;
+	std::string get_body() const;
+	int get_status_code() const;
 
 	int decode(char buffer[], int len);
 
