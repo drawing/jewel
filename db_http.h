@@ -51,7 +51,7 @@ public:
 	int set_body(const std::string & payload);
 	int set_status_code(int iCode);
 
-	int encode(char buffer[], int len);
+	int encode(char buffer[], int & len);
 private:
 	int iStatusCode;
 	std::string sPayload;

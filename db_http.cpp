@@ -285,7 +285,7 @@ int HTTPResponse::set_status_code(int iCode)
 	return 0;
 }
 
-int HTTPResponse::encode(char buffer[], int len)
+int HTTPResponse::encode(char buffer[], int & len)
 {
 	if (iStatusCode == 0) {
 		iStatusCode = 200;
