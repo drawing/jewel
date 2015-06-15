@@ -9,7 +9,7 @@ class HTTPStaticHandler : public HTTPHandler
 {
 public:
 	HTTPStaticHandler(const std::string & prefix, const std::string & root);
-	virtual int Process(const HTTPRequest & request, HTTPResponse & response) override;
+	virtual int Process(const HTTPRequest & request, HTTPResponse & response);
 	
 private:
 	std::string sRoot;

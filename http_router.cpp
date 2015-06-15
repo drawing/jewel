@@ -1,6 +1,7 @@
 
 #include "http_router.h"
 
+#include <cstring>
 
 bool HTTPRouter::Register(const std::string & pattern, HTTPHandler * handler)
 {
@@ -28,14 +29,18 @@ bool HTTPRouter::Handle(const HTTPRequest & request, HTTPResponse & response)
 	int code = 404;
 
 	auto uri = request.get_uri();
+	int pos = uri.find_first_of('?');
+	if (pos != -1) {
+		uri = uri.substr(0, pos);
+	}
 
 	if (mpLocations.find(uri) != mpLocations.end()) {
 		code = mpLocations[uri]->Process(request, response);
 	}
 	else {
-		for (auto pattern : mpPaths) {
-			if (strncmp(pattern.first.c_str(), uri.c_str(), pattern.first.size()) == 0) {
-				code = pattern.second->Process(request, response);
+		for (auto it = mpPaths.begin(); it != mpPaths.end(); it++) {
+			if (strncmp(it->first.c_str(), uri.c_str(), it->first.size()) == 0) {
+				code = it->second->Process(request, response);
 				break;
 			} 
 		}

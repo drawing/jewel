@@ -1,9 +1,11 @@
 
 #include "http_static_handler.h"
 
+#include <cstring>
+
 #include <fstream>
 
-HTTPStaticHandler::HTTPStaticHandler(const std::string & prefix, const std::string & root) : sPrefix(prefix), sRoot(root)
+HTTPStaticHandler::HTTPStaticHandler(const std::string & prefix, const std::string & root) : sRoot(root), sPrefix(prefix)
 {
 	mpContentType[".html"] = "text/html";
 	mpContentType[".css"] = "text/css";

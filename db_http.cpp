@@ -153,9 +153,13 @@ int HTTPRequest::decode(char buffer[], int & len)
 			// forexample: POST / HTTP/1.1
 			char szMethod[128];
 			char szURI[128];
-			sscanf(sData.substr(i, j - i).c_str(), "%[^ ]s %[^ ]s HTTP/1.1", szMethod, szURI);
+			sscanf(sData.substr(i, j - i).c_str(), "%s %[^ ]s HTTP/1.1", szMethod, szURI);
 			sMethod = szMethod;
 			sURI = szURI;
+
+			if (strcmp(szMethod, "GET") == 0) {
+				content_length = 0;
+			}
 			continue;
 		}
 
@@ -179,7 +183,7 @@ int HTTPRequest::decode(char buffer[], int & len)
 	if (content_length + header_len + 4 <= sData.size()) {
 		sPayload = sData.substr(header_len + 4, content_length);
 		// printf("Resp: %s\n", sPayload.c_str());
-		return content_length + header_len;
+		return content_length + header_len + 4;
 	}
 	else {
 		return 0;
@@ -292,7 +296,7 @@ int HTTPResponse::encode(char buffer[], int & len)
 	}
 
 	// TODO 返回字符串修改
-	int offset = snprintf(buffer, len, "HTTP/1.1 %d OK", iStatusCode);
+	int offset = snprintf(buffer, len, "HTTP/1.1 %d OK\r\n", iStatusCode);
 	if (offset <= 0 || offset >= len) {
 		return -10;
 	}
