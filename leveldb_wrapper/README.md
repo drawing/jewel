@@ -3,14 +3,14 @@
 
 ## usage
 
-1. init library
+* init library
 
 ```
 storage store;
 store.Init("./db");
 ```
 
-2. implement function
+* implement function
 
 ```
 bool DeserializeFromString(const std::string & key, A * a);
@@ -18,7 +18,7 @@ bool SerializeToString(const A & a, std::string * out);
 int Compare(const A & key1, const A & key2);
 ```
 
-3. register key type
+* register key type
 
 ```
 struct A;
