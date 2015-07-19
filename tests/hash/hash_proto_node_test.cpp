@@ -1,6 +1,6 @@
-#include "../hash_table.h"
-#include "../protobuf_hash_node.h"
-#include "../hash_builder.h"
+#include "hash_table.h"
+#include "protobuf_hash_node.h"
+#include "hash_builder.h"
 
 #include <gtest/gtest.h>
 
