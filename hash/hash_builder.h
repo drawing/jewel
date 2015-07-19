@@ -5,6 +5,10 @@
 
 #include <sys/shm.h>
 #include <sys/ipc.h>
+
+namespace jewel
+{
+
 /*
  A mem hash table builder
 */
@@ -51,6 +55,8 @@ HashTable<T> * CreateShmHash(key_t key, int row, int col)
 	
 	res->Init(sShm, iSize, row, col);
 	return res;
+}
+
 }
 
 #endif // HASH_BUILDER_H

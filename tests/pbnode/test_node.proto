@@ -7,3 +7,9 @@ message ProtoNode
     optional uint64 ID = 1;
     optional uint64 Value = 2;
 }
+
+message KeyType
+{
+	optional uint64 key = 1;
+}
+

@@ -3,6 +3,7 @@
 #define STORAGE_H
 
 #include <string>
+#include <map>
 
 #include "leveldb/comparator.h"
 #include "leveldb/db.h"
@@ -58,27 +59,6 @@ public:
 	}
 };
 
-
-/*
-Usage:
-	Storage store;
-	
-	store.Init("/path/");
-	std::string value = "test value";
-	store.Put(1, "key1", value);
-	store.Get(1, "key1", &value);
-	
-	struct A;
-	store.Register(2, A());
-	
-	A a;
-	// must define:
-	// bool DeserializeFromString(const std::string & key, A * a);
-	// bool SerializeToString(const A & a, std::string * out);
-	int Compare(const A & key1, const A & key2);
-	store.Put(2, "key2", a);
-	store.Get(2, "key2", &a);
-*/
 
 class Storage
 {

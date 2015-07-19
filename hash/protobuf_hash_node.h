@@ -3,6 +3,9 @@
 
 #include "hash_table.h"
 
+namespace jewel
+{
+
 template<typename T, int MaxSize>
 class ProtoBufNode
 {
@@ -43,6 +46,8 @@ public:
 public:
 	T _elem;
 };
+
+}
 
 #endif // PROTOBUF_HASH_NODE_H
 

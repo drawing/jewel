@@ -1,20 +1,10 @@
-#include "../hash_table.h"
-#include "../struct_hash_node.h"
-#include "../hash_builder.h"
+#include "hash_table.h"
+#include "struct_hash_node.h"
+#include "hash_builder.h"
 
 #include <gtest/gtest.h>
 
-/*
-ASSERT_TRUE
-ASSERT_EQ
-ASSERT_NE
-ASSERT_LT
-ASSERT_LE
-ASSERT_GT
-ASSERT_GE
-
-EXPECT_EQ
-*/
+using namespace jewel;
 
 struct TestStruct
 {

@@ -22,6 +22,9 @@ g_table->Put(n);
 g_table->Get(n);
 */
 
+namespace jewel
+{
+
 template<typename T>
 class CStructNode
 {
@@ -59,6 +62,8 @@ public:
 public:
 	T _elem;
 };
+
+}
 
 #endif // STRUCT_HASH_NODE_H
 

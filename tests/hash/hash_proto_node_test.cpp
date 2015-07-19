@@ -6,6 +6,8 @@
 
 #include "test_node.pb.h"
 
+using namespace jewel;
+
 typedef ProtoBufNode<test_node::ProtoNode, 10> Node;
 
 static HashTable<Node> * g_table = NULL;

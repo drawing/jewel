@@ -1,11 +1,11 @@
 
-#include "../http_static_handler.h"
+#include "http_static_handler.h"
 
 #include <gtest/gtest.h>
 
 TEST(HTTPStaticHandler, Normal)
 {
-	HTTPStaticHandler router("/test/", "./data");
+	HTTPStaticHandler router("/test/", "../http/data");
 
 	HTTPRequest request;
 	HTTPResponse response;
@@ -20,7 +20,7 @@ TEST(HTTPStaticHandler, Normal)
 	code = router.Process(request, response);
 	EXPECT_EQ(code, 404);
 
-	HTTPStaticHandler router2("/test", "./data");
+	HTTPStaticHandler router2("/test", "../http/data");
 	request.set_uri("/test/static_1.html");
 	code = router2.Process(request, response);
 	EXPECT_EQ(code, 200);

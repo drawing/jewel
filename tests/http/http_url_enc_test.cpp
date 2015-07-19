@@ -1,5 +1,5 @@
 
-#include "../http_uri_enc.h"
+#include "http_uri_enc.h"
 
 #include <gtest/gtest.h>
 

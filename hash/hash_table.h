@@ -6,6 +6,8 @@
 #include <ctime>
 #include <cstring>
 
+namespace jewel
+{
 
 /*
  A hash node must implement below interface
@@ -166,6 +168,8 @@ bool HashTable<T>::Put(T & node)
 		return true;
 	}
 	return false;
+}
+
 }
 
 #endif // HASHTABLE_H
