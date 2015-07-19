@@ -3,6 +3,7 @@ jewel
 
 useful library for c++:
 
-* db_http.h : simple http protocol decode and encode library
-* hash_table.h : a multi-level hash table implement
+* `http` : simple http protocol decode and encode library
+* `hash` : a multi-level hash table implement
+* `leveldb_wrapper` : a lightweight leveldb wrapper
 
