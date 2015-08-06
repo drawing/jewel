@@ -6,6 +6,7 @@ set(CMAKE_CXX_FLAGS " -L/Users/bodeng/local/lib/ -std=c++11")
 
 include_directories(../hash/)
 include_directories(../http/)
+include_directories(../encoder/)
 include_directories(../leveldb_wrapper/)
 include_directories(${PROJECT_BINARY_DIR})
 
@@ -40,4 +41,9 @@ aux_source_directory (../leveldb_wrapper/ LEVELDB_LIB_SRC)
 
 add_executable (LevelDBUnitTests main.cpp ${LEVELDB_TESTS_SRC} ${LEVELDB_LIB_SRC} test_node.pb.cc)
 target_link_libraries(LevelDBUnitTests gtest pthread leveldb protobuf)
+
+aux_source_directory (./encoder/ ENCODER_TESTS_SRC)
+
+add_executable (EncoderUnitTests main.cpp ${ENCODER_TESTS_SRC})
+target_link_libraries(EncoderUnitTests gtest pthread protobuf)
 
