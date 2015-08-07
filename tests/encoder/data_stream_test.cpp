@@ -46,7 +46,7 @@ TEST(DataStream, In)
 	uint8_t c;
 
 	std::string ostr;
-	in >> oi8 >> StringWithLenManip(ostr, 3) >> oi16;
+	in >> oi8 >> manip::in_string(ostr, 3) >> oi16;
 	ASSERT_TRUE(bool(in));
 	ASSERT_TRUE(ostr == s);
 	ASSERT_TRUE(i8 == oi8);

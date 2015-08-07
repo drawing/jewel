@@ -44,6 +44,6 @@ target_link_libraries(LevelDBUnitTests gtest pthread leveldb protobuf)
 
 aux_source_directory (./encoder/ ENCODER_TESTS_SRC)
 
-add_executable (EncoderUnitTests main.cpp ${ENCODER_TESTS_SRC})
+add_executable (EncoderUnitTests main.cpp ${ENCODER_TESTS_SRC} test_node.pb.cc)
 target_link_libraries(EncoderUnitTests gtest pthread protobuf)
 
