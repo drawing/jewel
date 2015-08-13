@@ -168,6 +168,7 @@ public:
 				in._succ = false;
 				return in;
 			}
+			in._cur += value._len;
 		}
 		else {
 			in._succ = false;
